@@ -3,10 +3,15 @@ import streamlit as st
 from streamlit_webrtc import VideoTransformerBase, webrtc_streamer
 import numpy as np
 import os
+import os.path
+
+import gdown
 
 from os import listdir
 from os.path import isfile, join
 
+path_gun='https://drive.google.com/uc?id=1bPPR0LVD_nn9oNAM1mTAdZxclcKxX0YJ'
+path_coco='https://drive.google.com/uc?id=16Avmk9pIZRfrqr2lFiDEH0vzGitO9QAh'
 
 class VideoTransformer(VideoTransformerBase):
     def __init__(self):
@@ -14,6 +19,9 @@ class VideoTransformer(VideoTransformerBase):
         self.threshold1 = 0.5
         self.threshold2 = 0.5
         weightsPath = os.path.sep.join([r"coco", "yolov4.weights"])
+        
+        if !(os.path.isfile(weightsPath)): # baixar         
+            gdown.download(path_coco,weightsPath)
         configPath = os.path.sep.join([r"coco", "yolov4.cfg"])
 
         labelsPath = os.path.sep.join([r"coco", "obj.names"])
@@ -99,11 +107,15 @@ def setModel(self, model):
         self.model = model
         if (model == 'diversos'):
             weightsPath = os.path.sep.join([r"coco", "yolov4.weights"])
+            if !(os.path.isfile(weightsPath)): # baixar         
+                gdown.download(path_coco,weightsPath)
             configPath = os.path.sep.join([r"/coco", "yolov4.cfg"])
             labelsPath = os.path.sep.join([r"coco", "obj.names"])
             #LABELS = open(labelsPath).read().strip().split("\n")
         else:
             weightsPath = os.path.sep.join([r"gun", "yolov4.weights"])
+            if !(os.path.isfile(weightsPath)): # baixar         
+                gdown.download(path_gun,weightsPath)
             configPath = os.path.sep.join([r"/gun", "yolov4.cfg"])
             labelsPath = os.path.sep.join([r"gun", "obj.names"])
         
