@@ -20,7 +20,7 @@ class VideoTransformer(VideoTransformerBase):
         self.threshold2 = 0.5
         weightsPath = os.path.sep.join([r"coco", "yolov4.weights"])
         
-        if !(os.path.isfile(weightsPath)): # baixar         
+        if not(os.path.isfile(weightsPath)): # baixar         
             gdown.download(path_coco,weightsPath)
         configPath = os.path.sep.join([r"coco", "yolov4.cfg"])
 
@@ -107,14 +107,14 @@ def setModel(self, model):
         self.model = model
         if (model == 'diversos'):
             weightsPath = os.path.sep.join([r"coco", "yolov4.weights"])
-            if !(os.path.isfile(weightsPath)): # baixar         
+            if not(os.path.isfile(weightsPath)): # baixar         
                 gdown.download(path_coco,weightsPath)
             configPath = os.path.sep.join([r"/coco", "yolov4.cfg"])
             labelsPath = os.path.sep.join([r"coco", "obj.names"])
             #LABELS = open(labelsPath).read().strip().split("\n")
         else:
             weightsPath = os.path.sep.join([r"gun", "yolov4.weights"])
-            if !(os.path.isfile(weightsPath)): # baixar         
+            if not(os.path.isfile(weightsPath)): # baixar         
                 gdown.download(path_gun,weightsPath)
             configPath = os.path.sep.join([r"/gun", "yolov4.cfg"])
             labelsPath = os.path.sep.join([r"gun", "obj.names"])
