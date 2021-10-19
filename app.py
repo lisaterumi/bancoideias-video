@@ -128,7 +128,9 @@ def setModel(self, model):
         self.colors = np.random.uniform(0, 255, size=(len(self.classes), 3))
         self.font = cv2.FONT_HERSHEY_PLAIN
 
-ctx = webrtc_streamer(key="example", video_transformer_factory=VideoTransformer)
+#ctx = webrtc_streamer(key="example", video_transformer_factory=VideoTransformer)
+ctx = webrtc_streamer(key="diversos", video_transformer_factory=VideoTransformer)
+
 
 if ctx.video_transformer:
     ctx.video_transformer.threshold1 = st.slider("Threshold1", 0.0, 1.0, 0.5)
